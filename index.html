@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>The Thirst — Survival Game</title>
+    <title>The Thirst</title>
 
     <style>
         body {
@@ -32,8 +32,33 @@
         .box {
             border: 1px solid #1f3f1f;
             padding: 15px;
-            margin-top: 20px;
+            margin-top: 25px;
             background-color: #050505;
+        }
+
+        .gallery {
+            display: flex;
+            overflow-x: auto;
+            gap: 10px;
+            padding-top: 10px;
+        }
+
+        .gallery img {
+            height: 200px;
+            border: 1px solid #1f3f1f;
+        }
+
+        details {
+            margin-top: 15px;
+            border: 1px solid #1f3f1f;
+            padding: 10px;
+            background-color: #050505;
+        }
+
+        summary {
+            cursor: pointer;
+            color: #7CFF7C;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -41,112 +66,110 @@
 <body>
 
 <h1>🧪 The Thirst</h1>
-
-<p><b>Survival game built on ArmA 2</b></p>
+<p><b>game</b></p>
 
 <p>
-Focused on <b>realistic dehydration, scarcity, and world-based persistence</b>.<br>
-This is not a loot hoarding game — survival depends on planning and movement.
+<b>Original ArmA 2 Chernarus experience</b><br>
+225 km² of open terrain — forests, roads, cities and villages
 </p>
 
 <div class="box">
 
-<h2>⚙️ Core Systems</h2>
+<h2>📸 In Game</h2>
 
-<p>💧 Thirst (Water)</p>
-<p>🍖 Hunger (Food)</p>
-<p>⚡ Stamina</p>
-
-<p>
-Drain depends on your actions:
-<br>• Running / crawling → high drain
-<br>• Walking → moderate
-<br>• Sitting ( ' key ) → lowest
-</p>
+<div class="gallery">
+    <img src="t1.jpg">
+    <img src="t2.jpg">
+    <img src="t3.jpg">
+    <img src="t4.jpg">
+    <img src="t5.jpg">
+    <img src="pump.jpg">
+    <img src="pumpkin.jpg">
+</div>
 
 </div>
 
 <div class="box">
 
-<h2>🚰 Water & Food</h2>
+<p>
+Nothing has been added on top — just what was already there is now usable.
+</p>
 
 <p>
-• Drink from pumps, wells, and fountains<br>
-• Water is finite but regenerates over time<br>
-• Players can empty water sources deliberately<br>
-• Food available from pumpkin fields
+You need water, food and stamina.
+</p>
+
+<p>
+Drinking from pumps, wells and fountains already present on the map.<br>
+Food comes directly from the world — like pumpkins in fields.
+</p>
+
+<p>
+Weapons are still there — just like in ArmA 2.
 </p>
 
 </div>
 
-<div class="box">
+<!-- COLLAPSIBLE SECTIONS -->
 
-<h2>🎯 Loot</h2>
+<details>
+<summary>▶ HOW TO PLAY</summary>
 
-<p>
-• Random loot spawns across the map<br>
-• Weapons include: Makarov, M9, M1911, AK, M16<br>
-• Loot locations are hinted<br>
-• Maps often found near bus stops
-</p>
+<p><b>1. Install the game</b><br>
+Install ArmA 2: Operation Arrowhead on Steam<br>
+(this version should include all expansions)</p>
 
-</div>
+<p><b>2. Start the game</b><br>
+Launch ArmA 2: Operation Arrowhead<br>
+Select "Launch without BattlEye" → PLAY</p>
 
-<div class="box">
+<p><b>3. Enable expansions</b><br>
+Operation Arrowhead<br>
+British Armed Forces<br>
+Private Military Company<br>
+Army of the Czech Republic<br>
+<i>If changed, restart the game</i></p>
 
-<h2>💾 Persistence (Important)</h2>
+<p><b>4. Join server</b><br>
+Multiplayer → Server Browser<br>
+HOST filter: thirst</p>
 
-<p>
-• You <b>CANNOT log out with items</b><br>
-• All items stay in the world<br>
-• You must physically store your gear
-</p>
+<p><b>5. Connect</b><br>
+Find: The Thirst game → Join</p>
 
-<p>
-Safe storage locations:
-<br>• North West Airfield
-<br>• Balota Airstrip
-</p>
+</details>
 
-</div>
-
-<div class="box">
-
-<h2>💾 Save System</h2>
+<details>
+<summary>▶ GAME INFO</summary>
 
 <p>
-To save your position:
-</p>
-
-<p>
-1. Use <b>"SAVE POSITION"</b> (mouse scroll)<br>
-2. Stay still for <b>20 seconds</b><br>
-3. Log out after saving
+Water comes from pumps, wells and fountains.<br>
+Food can be found in the world, such as pumpkins.<br>
+Stamina depends on how you move.
 </p>
 
 <p>
-If you don’t — your data may be lost.
+Walking allows longer travel.<br>
+Running drains you faster.
 </p>
 
-</div>
+</details>
 
-<div class="box">
-
-<h2>🔁 Server</h2>
+<details>
+<summary>▶ CURRENT VERSION</summary>
 
 <p>
-• No regular restarts<br>
-• Persistent world<br>
-• Restart only with warning
+Version 0.1<br><br>
+• Water sources active<br>
+• Pumpkins added<br>
+• Basic stamina system<br>
 </p>
 
-</div>
+</details>
 
 <div class="box">
 
-<h2>📢 Join the Project</h2>
-
-<p>Instructions, updates and community:</p>
+<h2>📢 Community</h2>
 
 <p>
 <a href="https://discord.gg/UqUdZpsR8G">👉 Join Discord</a>
