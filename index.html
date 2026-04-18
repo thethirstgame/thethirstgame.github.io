@@ -9,6 +9,7 @@
             color: #d0ffd0;
             font-family: Arial, sans-serif;
             margin: 40px;
+            max-width: 900px;
         }
 
         h1 { color: #7CFF7C; }
@@ -28,19 +29,27 @@
             background-color: #050505;
         }
 
-.gallery {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    padding-top: 10px;
-}
+        .gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 10px;
+        }
 
-.gallery img {
-    width: 100%;
-    max-height: 500px;
-    object-fit: cover;
-    border: 1px solid #1f3f1f;
-}
+        .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border: 1px solid #1f3f1f;
+            display: block;
+        }
+
+        .gallery.single {
+            grid-template-columns: 1fr;
+        }
+
+        .gallery.single img {
+            height: auto;
         }
 
         details {
@@ -81,7 +90,6 @@ Learn more about the map →
 
 <!-- MAP -->
 <div class="box">
-
 <h2>🌍 The Map</h2>
 
 <div class="gallery">
@@ -95,12 +103,10 @@ Learn more about the map →
 Nothing new was added.<br>
 What was already there — is now usable.
 </p>
-
 </div>
 
 <!-- WATER -->
 <div class="box">
-
 <h2>💧 Water</h2>
 
 <div class="gallery">
@@ -113,45 +119,39 @@ What was already there — is now usable.
 <p>
 Water comes from the world itself — pumps, wells, gold pumps and fountains.
 </p>
-
 </div>
 
 <!-- FOOD -->
 <div class="box">
-
 <h2>🌾 Food</h2>
 
-<div class="gallery">
+<div class="gallery single">
     <img src="food.jpg">
 </div>
 
 <p>
 Food is found directly in the world — like pumpkins growing in fields.
 </p>
-
 </div>
 
 <!-- VEHICLES -->
 <div class="box">
-
 <h2>⛽ Vehicles</h2>
 
-<div class="gallery">
+<div class="gallery single">
     <img src="refuel.jpg">
 </div>
 
 <p>
 Vehicles can be maintained using resources found in the world.
 </p>
-
 </div>
 
-<!-- WEAPONS LAST -->
+<!-- WEAPONS -->
 <div class="box">
-
 <h2>⚔️ Encounters</h2>
 
-<div class="gallery">
+<div class="gallery single">
     <img src="gun.jpg">
 </div>
 
@@ -164,7 +164,6 @@ Other players are part of survival.<br>
 Sometimes they help.<br>
 Sometimes they don’t.
 </p>
-
 </div>
 
 <!-- HOW TO PLAY -->
@@ -216,27 +215,21 @@ Version 0.2<br><br>
 
 <!-- LINKS -->
 <div class="box">
-
 <h2>📺 Videos</h2>
-
 <p>
 <a href="https://www.youtube.com/@TheThirstgame">
 👉 Watch on YouTube
 </a>
 </p>
-
 </div>
 
 <div class="box">
-
 <h2>📢 Community</h2>
-
 <p>
 <a href="https://discord.gg/UqUdZpsR8G">
 👉 Join Discord
 </a>
 </p>
-
 </div>
 
 </body>
