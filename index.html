@@ -11,23 +11,15 @@
             margin: 40px;
         }
 
-        h1 {
-            color: #7CFF7C;
-        }
-
-        h2 {
-            color: #55cc55;
-            margin-top: 30px;
-        }
+        h1 { color: #7CFF7C; }
+        h2 { color: #55cc55; margin-top: 30px; }
 
         a {
             color: #00ff88;
             text-decoration: none;
         }
 
-        a:hover {
-            text-decoration: underline;
-        }
+        a:hover { text-decoration: underline; }
 
         .box {
             border: 1px solid #1f3f1f;
@@ -38,13 +30,14 @@
 
         .gallery {
             display: flex;
-            overflow-x: auto;
+            flex-wrap: wrap;
             gap: 10px;
             padding-top: 10px;
         }
 
         .gallery img {
-            height: 400px;
+            width: 100%;
+            max-width: 300px;
             border: 1px solid #1f3f1f;
         }
 
@@ -69,126 +62,165 @@
 <p><b>game</b></p>
 
 <p>
+<i>Explore Chernarus, where thirst drives you…<br>
+for water — or for blood.</i>
+</p>
+
+<p>
 <b>Original ArmA 2 Chernarus experience</b><br>
 225 km² of open terrain — forests, roads, cities and villages
 </p>
 
 <p>
-<a href="https://community.bistudio.com/wiki/Chernarus" target="_blank">Learn more about the map →</a>
+<a href="https://community.bistudio.com/wiki/Chernarus" target="_blank">
+Learn more about the map →
+</a>
 </p>
 
+<!-- MAP -->
 <div class="box">
 
-<h2>📸 In Game</h2>
+<h2>🌍 The Map</h2>
 
 <div class="gallery">
-    <img src="t1.jpg">
-    <img src="t2.jpg">
-    <img src="t3.jpg">
-    <img src="t4.jpg">
-    <img src="t5.jpg">
-    <img src="pump.jpg">
-    <img src="pumpkin.jpg">
+    <img src="n1.jpg">
+    <img src="n2.jpg">
+    <img src="n3.jpg">
+    <img src="n4.jpg">
 </div>
+
+<p>
+Nothing new was added.<br>
+What was already there — is now usable.
+</p>
 
 </div>
 
+<!-- WATER -->
 <div class="box">
 
-<p>
-Nothing has been added on top — just what was already there is now usable.
-</p>
+<h2>💧 Water</h2>
+
+<div class="gallery">
+    <img src="pump.jpg">
+    <img src="well.jpg">
+    <img src="goldpump.jpg">
+    <img src="fountain.jpg">
+</div>
 
 <p>
-You need water, food and stamina.
-</p>
-
-<p>
-Drinking from pumps, wells and fountains already present on the map.<br>
-Food comes directly from the world — like pumpkins in fields.
-</p>
-
-<p>
-Weapons are still there — just like in ArmA 2.
+Water comes from the world itself — pumps, wells, gold pumps and fountains.
 </p>
 
 </div>
 
-<!-- COLLAPSIBLE SECTIONS -->
+<!-- FOOD -->
+<div class="box">
 
+<h2>🌾 Food</h2>
+
+<div class="gallery">
+    <img src="food.jpg">
+</div>
+
+<p>
+Food is found directly in the world — like pumpkins growing in fields.
+</p>
+
+</div>
+
+<!-- VEHICLES -->
+<div class="box">
+
+<h2>⛽ Vehicles</h2>
+
+<div class="gallery">
+    <img src="refuel.jpg">
+</div>
+
+<p>
+Vehicles can be maintained using resources found in the world.
+</p>
+
+</div>
+
+<!-- WEAPONS LAST -->
+<div class="box">
+
+<h2>⚔️ Encounters</h2>
+
+<div class="gallery">
+    <img src="gun.jpg">
+</div>
+
+<p>
+Weapons are still there — just like before.
+</p>
+
+<p>
+Other players are part of survival.<br>
+Sometimes they help.<br>
+Sometimes they don’t.
+</p>
+
+</div>
+
+<!-- HOW TO PLAY -->
 <details>
 <summary>▶ HOW TO PLAY</summary>
 
-<p><b>1. Install the game</b><br>
-Install ArmA 2: Operation Arrowhead on Steam<br>
-(this version should include all expansions)</p>
+<p><b>1. Install</b><br>
+ArmA 2: Operation Arrowhead (Steam)</p>
 
-<p><b>2. Start the game</b><br>
-Launch ArmA 2: Operation Arrowhead<br>
-Select "Launch without BattlEye" → PLAY</p>
+<p><b>2. Start</b><br>
+Launch without BattlEye</p>
 
 <p><b>3. Enable expansions</b><br>
 Operation Arrowhead<br>
 British Armed Forces<br>
 Private Military Company<br>
-Army of the Czech Republic<br>
-<i>If changed, restart the game</i></p>
+Army of the Czech Republic</p>
 
-<p><b>4. Join server</b><br>
-Multiplayer → Server Browser<br>
-HOST filter: thirst</p>
-
-<p><b>5. Connect</b><br>
-Find: The Thirst game → Join</p>
+<p><b>4. Join</b><br>
+Multiplayer → filter: thirst</p>
 
 </details>
 
+<!-- INFO -->
 <details>
 <summary>▶ GAME INFO</summary>
 
 <p>
-Water comes from pumps, wells and fountains.<br>
-Food can be found in the world, such as pumpkins.<br>
-Stamina depends on how you move.
-</p>
-
-<p>
 Walking allows longer travel.<br>
 Running drains you faster.<br>
-Roads are easier to travel than rough terrain.
+Roads are easier than rough terrain.
 </p>
 
 </details>
 
+<!-- VERSION -->
 <details>
 <summary>▶ CURRENT VERSION</summary>
 
 <p>
 Version 0.2<br><br>
-• Movement updated — roads are now more efficient<br>
-• Longer survival — less frequent drinking/eating<br>
-• Faster stamina regeneration<br>
-• Pumpkin fields fixed and expanded<br>
-• HUD simplified<br>
-</p>
-
-<hr>
-
-<p>
-Version 0.1<br><br>
-• Water sources active<br>
-• Pumpkins added<br>
-• Basic stamina system<br>
+• Roads improved<br>
+• Slower hunger/thirst<br>
+• Faster stamina regen<br>
+• HUD simplified
 </p>
 
 </details>
 
+<!-- LINKS -->
 <div class="box">
 
 <h2>📺 Videos</h2>
 
 <p>
-<a href="https://www.youtube.com/@TheThirstgame">👉 Watch on YouTube</a>
+<a href="https://www.youtube.com/@TheThirstgame">
+👉 Watch on YouTube
+</a>
 </p>
 
 </div>
@@ -198,7 +230,9 @@ Version 0.1<br><br>
 <h2>📢 Community</h2>
 
 <p>
-<a href="https://discord.gg/UqUdZpsR8G">👉 Join Discord</a>
+<a href="https://discord.gg/UqUdZpsR8G">
+👉 Join Discord
+</a>
 </p>
 
 </div>
