@@ -4,6 +4,29 @@
     <title>The Thirst</title>
 
     <style>
+
+        /* BIG SCROLLBAR */
+.gallery::-webkit-scrollbar {
+    height: 16px;
+}
+
+.gallery::-webkit-scrollbar-track {
+    background: #050505;
+}
+
+.gallery::-webkit-scrollbar-thumb {
+    background: #1f3f1f;
+}
+
+.gallery::-webkit-scrollbar-thumb:hover {
+    background: #55cc55;
+}
+
+/* Firefox */
+.gallery {
+    scrollbar-width: thick;
+    scrollbar-color: #1f3f1f #050505;
+}
         body {
             background-color: #0a0a0a;
             color: #d0ffd0;
