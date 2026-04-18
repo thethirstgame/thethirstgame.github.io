@@ -3,7 +3,26 @@
 <head>
     <title>The Thirst</title>
 
- <style>
+<style>
+/* IMAGE POPUP */
+#imgModal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    align-items: center;
+    justify-content: center;
+}
+
+#imgModal img {
+    max-width: 90%;
+    max-height: 90%;
+}
+
 body {
     background-color: #0a0a0a;
     color: #d0ffd0;
@@ -33,9 +52,8 @@ a:hover { text-decoration: underline; }
     display: flex;
     overflow-x: scroll;
     gap: 10px;
-
     padding-top: 10px;
-    padding-bottom: 20px;  /* 👈 THIS moves scrollbar BELOW images */
+    padding-bottom: 20px;
 }
 
 .gallery img {
@@ -101,14 +119,12 @@ Learn more about the map →
 <!-- MAP -->
 <div class="box">
 <h2>🌍 The Map</h2>
-
 <div class="gallery">
     <img src="n1.jpg">
     <img src="n2.jpg">
     <img src="n3.jpg">
     <img src="n4.jpg">
 </div>
-
 <p>
 Nothing new was added.<br>
 What was already there — is now usable.
@@ -118,14 +134,12 @@ What was already there — is now usable.
 <!-- WATER -->
 <div class="box">
 <h2>💧 Water</h2>
-
 <div class="gallery">
     <img src="pump.jpg">
     <img src="well.jpg">
     <img src="goldpump.jpg">
     <img src="fountain.jpg">
 </div>
-
 <p>
 Water comes from the world itself — pumps, wells, gold pumps and fountains.
 </p>
@@ -134,11 +148,9 @@ Water comes from the world itself — pumps, wells, gold pumps and fountains.
 <!-- FOOD -->
 <div class="box">
 <h2>🌾 Food</h2>
-
 <div class="gallery">
     <img src="food.jpg">
 </div>
-
 <p>
 Food is found directly in the world — like pumpkins growing in fields.
 </p>
@@ -147,11 +159,9 @@ Food is found directly in the world — like pumpkins growing in fields.
 <!-- VEHICLES -->
 <div class="box">
 <h2>⛽ Vehicles</h2>
-
 <div class="gallery">
     <img src="refuel.jpg">
 </div>
-
 <p>
 Vehicles can be maintained using resources found in the world.
 </p>
@@ -160,15 +170,12 @@ Vehicles can be maintained using resources found in the world.
 <!-- WEAPONS -->
 <div class="box">
 <h2>⚔️ Encounters</h2>
-
 <div class="gallery">
     <img src="gun.jpg">
 </div>
-
 <p>
 Weapons are still there — just like before.
 </p>
-
 <p>
 Other players are part of survival.<br>
 Sometimes they help.<br>
@@ -179,40 +186,29 @@ Sometimes they don’t.
 <!-- HOW TO PLAY -->
 <details>
 <summary>▶ HOW TO PLAY</summary>
-
-<p><b>1. Install</b><br>
-ArmA 2: Operation Arrowhead (Steam)</p>
-
-<p><b>2. Start</b><br>
-Launch without BattlEye</p>
-
+<p><b>1. Install</b><br>ArmA 2: Operation Arrowhead (Steam)</p>
+<p><b>2. Start</b><br>Launch without BattlEye</p>
 <p><b>3. Enable expansions</b><br>
 Operation Arrowhead<br>
 British Armed Forces<br>
 Private Military Company<br>
 Army of the Czech Republic</p>
-
-<p><b>4. Join</b><br>
-Multiplayer → filter: thirst</p>
-
+<p><b>4. Join</b><br>Multiplayer → filter: thirst</p>
 </details>
 
 <!-- INFO -->
 <details>
 <summary>▶ GAME INFO</summary>
-
 <p>
 Walking allows longer travel.<br>
 Running drains you faster.<br>
 Roads are easier than rough terrain.
 </p>
-
 </details>
 
 <!-- VERSION -->
 <details>
 <summary>▶ CURRENT VERSION</summary>
-
 <p>
 Version 0.2<br><br>
 • Roads improved<br>
@@ -220,27 +216,34 @@ Version 0.2<br><br>
 • Faster stamina regen<br>
 • HUD simplified
 </p>
-
 </details>
 
 <!-- LINKS -->
 <div class="box">
 <h2>📺 Videos</h2>
-<p>
-<a href="https://www.youtube.com/@TheThirstgame">
-👉 Watch on YouTube
-</a>
-</p>
+<p><a href="https://www.youtube.com/@TheThirstgame">👉 Watch on YouTube</a></p>
 </div>
 
 <div class="box">
 <h2>📢 Community</h2>
-<p>
-<a href="https://discord.gg/UqUdZpsR8G">
-👉 Join Discord
-</a>
-</p>
+<p><a href="https://discord.gg/UqUdZpsR8G">👉 Join Discord</a></p>
 </div>
+
+<!-- IMAGE MODAL -->
+<div id="imgModal" onclick="this.style.display='none'">
+    <img id="imgModalContent">
+</div>
+
+<script>
+document.querySelectorAll('.gallery img').forEach(img => {
+    img.onclick = () => {
+        const modal = document.getElementById('imgModal');
+        const modalImg = document.getElementById('imgModalContent');
+        modal.style.display = 'flex';
+        modalImg.src = img.src;
+    };
+});
+</script>
 
 </body>
 </html>
