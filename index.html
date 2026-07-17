@@ -1,348 +1,714 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>The Thirst</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Thirst: Utes — an ArmA 2 survival PvP server inspired by the atmosphere of early vanilla DayZ.">
+    <title>The Thirst: Utes</title>
 
-<style>
-/* IMAGE POPUP */
-#imgModal {
-    display: none;
-    position: fixed;
-    z-index: 999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.9);
-    align-items: center;
-    justify-content: center;
-}
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --panel: #050505;
+            --panel-soft: #080808;
+            --text: #d0ffd0;
+            --muted: #9db89d;
+            --heading: #7cff7c;
+            --heading-secondary: #55cc55;
+            --link: #00ff88;
+            --border: #1f3f1f;
+            --border-strong: #2d5c2d;
+        }
 
-#imgModal img {
-    max-width: 90%;
-    max-height: 90%;
-}
+        * {
+            box-sizing: border-box;
+        }
 
-body {
-    background-color: #0a0a0a;
-    color: #d0ffd0;
-    font-family: Arial, sans-serif;
-    margin: 40px;
-}
+        html {
+            scroll-behavior: smooth;
+        }
 
-h1 { color: #7CFF7C; }
-h2 { color: #55cc55; margin-top: 30px; }
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.65;
+        }
 
-a {
-    color: #00ff88;
-    text-decoration: none;
-}
+        .page {
+            width: min(980px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 42px 0 64px;
+        }
 
-a:hover { text-decoration: underline; }
+        header {
+            padding-bottom: 28px;
+            border-bottom: 1px solid var(--border);
+        }
 
-.box {
-    border: 1px solid #1f3f1f;
-    padding: 15px;
-    margin-top: 25px;
-    background-color: #050505;
-}
+        h1,
+        h2,
+        h3 {
+            margin-top: 0;
+        }
 
-/* HORIZONTAL SCROLL */
-.gallery {
-    display: flex;
-    overflow-x: scroll;
-    gap: 10px;
-    padding-top: 10px;
-    padding-bottom: 20px;
-}
+        h1 {
+            margin-bottom: 8px;
+            color: var(--heading);
+            font-size: clamp(2.1rem, 6vw, 4rem);
+            line-height: 1.05;
+            letter-spacing: 0.035em;
+            text-transform: uppercase;
+        }
 
-.gallery img {
-    height: 400px;
-    border: 1px solid #1f3f1f;
-    flex-shrink: 0;
-}
+        .tagline {
+            margin: 0;
+            max-width: 760px;
+            color: var(--heading-secondary);
+            font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+            font-weight: bold;
+        }
 
-/* BIG SCROLLBAR */
-.gallery::-webkit-scrollbar {
-    height: 22px;
-}
+        .intro {
+            margin-top: 24px;
+            max-width: 850px;
+            font-size: 1.05rem;
+        }
 
-.gallery::-webkit-scrollbar-track {
-    background: #050505;
-}
+        .intro p:last-child {
+            margin-bottom: 0;
+        }
 
-.gallery::-webkit-scrollbar-thumb {
-    background: #55cc55;
-}
+        h2 {
+            color: var(--heading-secondary);
+            margin-bottom: 16px;
+            font-size: 1.45rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
 
-/* Firefox */
-.gallery {
-    scrollbar-width: auto;
-}
+        h3 {
+            color: var(--heading);
+            margin-bottom: 10px;
+            font-size: 1.08rem;
+            letter-spacing: 0.03em;
+        }
 
-details {
-    margin-top: 15px;
-    border: 1px solid #1f3f1f;
-    padding: 10px;
-    background-color: #050505;
-}
+        p {
+            margin: 0 0 16px;
+        }
 
-summary {
-    cursor: pointer;
-    color: #7CFF7C;
-    font-weight: bold;
-}
-</style>
+        a {
+            color: var(--link);
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:focus {
+            text-decoration: underline;
+        }
+
+        strong {
+            color: #e1ffe1;
+        }
+
+        .box {
+            margin-top: 28px;
+            padding: 22px;
+            border: 1px solid var(--border);
+            background: var(--panel);
+        }
+
+        .quick-facts {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .fact {
+            min-height: 105px;
+            padding: 16px;
+            border: 1px solid var(--border);
+            background: var(--panel);
+        }
+
+        .fact span {
+            display: block;
+        }
+
+        .fact-label {
+            margin-bottom: 6px;
+            color: var(--muted);
+            font-size: 0.82rem;
+            font-weight: bold;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .fact-value {
+            color: var(--heading);
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .map-link {
+            display: block;
+            cursor: zoom-in;
+        }
+
+        .map-image {
+            display: block;
+            width: 100%;
+            height: auto;
+            border: 1px solid var(--border-strong);
+            background: #111;
+        }
+
+        .caption {
+            margin: 12px 0 0;
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .section-list {
+            margin: 0;
+            padding-left: 22px;
+        }
+
+        .section-list li {
+            margin: 6px 0;
+        }
+
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 18px 0;
+        }
+
+        .stat {
+            padding: 7px 11px;
+            border: 1px solid var(--border-strong);
+            background: var(--panel-soft);
+            color: var(--heading);
+            font-weight: bold;
+            letter-spacing: 0.05em;
+        }
+
+        .callout {
+            margin: 18px 0;
+            padding: 14px 16px;
+            border-left: 3px solid var(--heading-secondary);
+            background: #071007;
+        }
+
+        details {
+            margin-top: 14px;
+            border: 1px solid var(--border);
+            background: var(--panel);
+        }
+
+        summary {
+            cursor: pointer;
+            padding: 15px 17px;
+            color: var(--heading);
+            font-weight: bold;
+            letter-spacing: 0.04em;
+            list-style: none;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::before {
+            content: "▶";
+            display: inline-block;
+            width: 1.4em;
+            color: var(--heading-secondary);
+            transition: transform 0.15s ease;
+        }
+
+        details[open] summary::before {
+            transform: rotate(90deg);
+        }
+
+        .details-content {
+            padding: 0 17px 18px;
+            border-top: 1px solid var(--border);
+        }
+
+        .details-content > :first-child {
+            margin-top: 16px;
+        }
+
+        .route-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .route-card {
+            padding: 16px;
+            border: 1px solid var(--border);
+            background: var(--panel-soft);
+        }
+
+        .join-steps {
+            margin: 0;
+            padding-left: 22px;
+        }
+
+        .join-steps li {
+            margin: 9px 0;
+            padding-left: 4px;
+        }
+
+        .warning {
+            color: #f2fff2;
+            font-weight: bold;
+        }
+
+        footer {
+            margin-top: 34px;
+            padding-top: 22px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        /* IMAGE MODAL */
+        #imgModal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            inset: 0;
+            padding: 28px;
+            background: rgba(0, 0, 0, 0.94);
+            align-items: center;
+            justify-content: center;
+        }
+
+        #imgModal.open {
+            display: flex;
+        }
+
+        #imgModalContent {
+            max-width: 95%;
+            max-height: 92vh;
+            border: 1px solid var(--border-strong);
+        }
+
+        #closeModal {
+            position: fixed;
+            top: 18px;
+            right: 22px;
+            border: 1px solid var(--border-strong);
+            background: var(--panel);
+            color: var(--heading);
+            font: inherit;
+            font-weight: bold;
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        #closeModal:hover,
+        #closeModal:focus {
+            background: #0d1a0d;
+        }
+
+        @media (max-width: 720px) {
+            .page {
+                width: min(100% - 22px, 980px);
+                padding-top: 24px;
+            }
+
+            .box {
+                padding: 17px;
+            }
+
+            .quick-facts,
+            .route-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .fact {
+                min-height: 0;
+            }
+
+            #imgModal {
+                padding: 14px;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <main class="page">
+        <header>
+            <h1>The Thirst: Utes</h1>
+            <p class="tagline">The early Chernarus survival experience, compressed onto Utes.</p>
 
-<h1>🧪 The Thirst</h1>
-<p><b>game</b></p>
+            <div class="intro">
+                <p>
+                    <strong>The Thirst: Utes</strong> is a small-scale survival PvP server inspired by
+                    the atmosphere and unrealized promise of early vanilla DayZ.
+                </p>
 
-<p>
-<i>Explore Chernarus, where thirst drives you…<br>
-for water — or for blood.</i>
-</p>
+                <p>
+                    It compresses that experience onto Utes, where even a very small number of players
+                    can create meaningful tension, contested routes, and encounters.
+                </p>
 
-<p>
-<b>Original ArmA 2 Chernarus experience</b><br>
-225 km² of open terrain — forests, roads, cities and villages
-</p>
+                <p>
+                    Navigate with the actual map and compass. Read terrain. Plan approaches. Manage
+                    food, water, and stamina. Fight with the full character of ArmA 2 mil-sim combat.
+                </p>
+            </div>
+        </header>
 
-<p>
-<a href="https://community.bistudio.com/wiki/Chernarus" target="_blank">
-Learn more about the map →
-</a>
-</p>
+        <section class="quick-facts" aria-label="Server summary">
+            <div class="fact">
+                <span class="fact-label">Map</span>
+                <span class="fact-value">Utes</span>
+            </div>
 
-<!-- MAP -->
-<div class="box">
-<h2>🌍 The Map</h2>
-<div class="gallery">
-    <img src="n1.jpg">
-    <img src="n2.jpg">
-    <img src="n3.jpg">
-    <img src="n4.jpg">
-</div>
-<p>
-Nothing new was added.<br>
-What was already there — is now usable.
-</p>
-</div>
+            <div class="fact">
+                <span class="fact-label">Main weapons</span>
+                <span class="fact-value">Makarov / AK-74</span>
+            </div>
 
-<!-- WATER -->
-<div class="box">
-<h2>💧 Water</h2>
-<div class="gallery">
-    <img src="bluepump.jpg">
-    <img src="well.jpg">
-    <img src="goldpump.jpg">
-    <img src="fountain.jpg">
-</div>
-<p>
-Water comes from the world itself — pumps, wells, gold pumps and fountains.
-</p>
-</div>
+            <div class="fact">
+                <span class="fact-label">Server filter</span>
+                <span class="fact-value">Thirst</span>
+            </div>
+        </section>
 
-<!-- FOOD -->
-<div class="box">
-<h2>🌾 Food</h2>
-<div class="gallery">
-    <img src="food.jpg">
-</div>
-<p>
-Food is found directly in the world — like pumpkins growing in fields.
-</p>
-</div>
+        <section class="box" id="map">
+            <h2>The Map</h2>
 
-<!-- VEHICLES -->
-<div class="box">
-<h2>⛽ Vehicles</h2>
-<div class="gallery">
-    <img src="refuel.jpg">
-</div>
-<p>
-Vehicles can be maintained using resources found in the world.
-</p>
-</div>
+            <a
+                class="map-link"
+                href="The Thirst Arma2-terrain-utes-topographicmap.jpg"
+                aria-label="Open the full Utes server map"
+            >
+                <img
+                    class="map-image"
+                    src="The Thirst Arma2-terrain-utes-topographicmap.jpg"
+                    alt="Topographic map of Utes showing water, food, weapons, ammunition, navigation equipment, and AI locations"
+                >
+            </a>
 
-<!-- WEAPONS -->
-<div class="box">
-<h2>⚔️ Encounters</h2>
-<div class="gallery">
-    <img src="gun.jpg">
-</div>
-<p>
-Weapons are still there — just like before.
-</p>
-<p>
-Other players are part of survival.<br>
-Sometimes they help.<br>
-Sometimes they don’t.
-</p>
-</div>
+            <p class="caption">
+                Click the map to view it at full size. The marked locations show the complete current
+                survival and weapon layout of the server.
+            </p>
+        </section>
 
-<!-- HOW TO PLAY -->
-<details>
-<summary>▶ HOW TO PLAY</summary>
-<p><b>1. Install</b><br>ArmA 2: Operation Arrowhead (Steam)</p>
-<p><b>2. Start</b><br>Launch without BattlEye</p>
-<p><b>3. Enable expansions</b><br>
-Operation Arrowhead<br>
-British Armed Forces<br>
-Private Military Company<br>
-Army of the Czech Republic</p>
-<p><b>4. Join</b><br>Multiplayer → filter: thirst</p>
-</details>
+        <section class="box" id="server">
+            <h2>The Server</h2>
 
-<!-- INFO -->
-<details>
-<summary>▶ GAME INFO</summary>
+            <p>
+                The idea behind <strong>The Thirst: Utes</strong> is to recapture the dream and
+                atmosphere of early vanilla DayZ while letting players experience the full character
+                of <strong>ArmA 2 mil-sim combat</strong>.
+            </p>
 
-<p>
-<b>Core Idea</b><br>
-Move across Chernarus, manage water, food and stamina —<br>
-and survive long enough to matter.
-</p>
+            <p>
+                That means navigating with the actual map and compass, planning routes, reading
+                terrain, choosing approaches, and fighting at distances where bullet drop matters.
+            </p>
 
-<p>
-<b>What is this?</b><br>
-ArmA 2: Operation Arrowhead mod inspired by the original DayZ Mod experience.<br>
-Explore Chernarus, where movement, water and food matter.<br>
-No zones. No objectives. Just the world — and other players.
-</p>
+            <p>
+                It also means actually using the weapons: iron sights, pistol sights, optics,
+                adjustable zeroing, fire-mode switches, and ArmA 2's directional combat audio—the
+                crack of distant gunfire, bullets passing overhead, and the whizz of a near miss.
+            </p>
 
-<p>
-<b>First Minutes</b><br>
-• Spawn near the coast<br>
-• Reach land and recover stamina<br>
-• Use roads (reduced stamina drain)<br>
-• Find water (pumps, wells, fountains)<br>
-• Find food (pumpkin fields)
-</p>
+            <p>
+                This is not a server built around hundreds of weapons or constant close-range action.
+                The systems and equipment are deliberately limited so that every resource, route,
+                and gun matters.
+            </p>
+        </section>
 
-<p>
-<b>Movement</b><br>
-• Unarmed = fastest and most efficient<br>
-• Armed = slower, drains more stamina<br>
-• Roads are easier than terrain<br><br>
+        <details open>
+            <summary>Survival</summary>
+            <div class="details-content">
+                <p>Your character has three central survival statistics:</p>
 
-<b>You can outrun players — not bullets.</b>
-</p>
+                <div class="stats" aria-label="Survival statistics">
+                    <span class="stat">FOOD</span>
+                    <span class="stat">WATER</span>
+                    <span class="stat">STAMINA</span>
+                </div>
 
-<p>
-<b>Water & Food</b><br>
-• Stand still ~60 seconds to consume<br>
-• Water must be below 80 to drink<br>
-• Sources can run dry<br><br>
+                <p>
+                    Food and water are always slowly draining. The faster you travel, the faster they
+                    drain. Walking increases consumption, while running increases it much more heavily.
+                </p>
 
-Use carefully — the world is shared
-</p>
+                <p>
+                    Stamina is depleted by movement and drains faster as you increase your speed.
+                    Travelling on roads is considerably less exhausting than crossing open terrain,
+                    hills, or wilderness.
+                </p>
 
-<p>
-<b>Loot</b><br>
-• Found in towns near water sources<br>
-• Look for green crates<br>
-• Empty = looted or spawned elsewhere<br><br>
+                <p>
+                    When stamina reaches zero, your character becomes <strong>EXHAUSTED</strong>.
+                </p>
 
-Far north/west requires preparation
-</p>
+                <div class="callout">
+                    While exhausted, food and water consumption increases dramatically. Repeatedly
+                    pushing your stamina to zero will quickly burn through your water reserves,
+                    seriously reducing how far you can travel and how much movement you can afford
+                    during combat.
+                </div>
 
-<p>
-<b>Containers</b><br>
-• Water canister (10 water)<br>
-• Food bag (20 food)<br><br>
+                <p>
+                    You may still force yourself onward, but exhaustion creates a real survival debt.
+                    A long run now can leave you without enough water to complete the next journey,
+                    escape a fight, or safely reach another water source.
+                </p>
 
-• Fill while using sources<br>
-• Drop (unarmed + crouch ~20 seconds) to use
-</p>
+                <p>
+                    Rest and allow your stamina to recover fully to 100 to remove exhaustion.
+                </p>
+            </div>
+        </details>
 
-<p>
-<b>HUD</b><br>
-You normally see only Water, Food and Stamina.<br><br>
+        <details>
+            <summary>Movement and Exposure</summary>
+            <div class="details-content">
+                <p>
+                    Movement is not only about speed. It also affects how easily other players can
+                    locate you.
+                </p>
 
-To see detailed HUD:<br>
-• Unarmed → crouch ~20 seconds<br>
-• Armed → open inventory (G)
-</p>
+                <p>
+                    Running—including crouch-running—while armed with a pistol or rifle temporarily
+                    marks your movement, making you easier to spot.
+                </p>
 
-<p>
-<b>Interaction</b><br>
-• Unarmed + crouched<br>
-• Actions take time — commit
-</p>
+                <ul class="section-list">
+                    <li>Full sprinting is treated as a short combat movement and does not create this marker.</li>
+                    <li>Running while unarmed also does not mark you.</li>
+                </ul>
 
-<p>
-<b>Action Speed</b><br>
-• Fastest → unarmed<br>
-• Medium → pistol<br>
-• Slowest → rifle lowered (2× CTRL)
-</p>
+                <p>
+                    This creates a choice between efficient, controlled travel and exposing yourself
+                    by moving quickly with a weapon ready.
+                </p>
+            </div>
+        </details>
 
-<p>
-<b>Stamina</b><br>
-Drains faster when:<br>
-• running<br>
-• armed<br>
-• off-road<br><br>
+        <details>
+            <summary>Weapons and Ammunition</summary>
+            <div class="details-content">
+                <p>Utes contains four military bases.</p>
 
-Move smart to survive longer
-</p>
+                <p>
+                    Weapons and ammunition periodically appear near the guard posts at their
+                    entrances—the small barred buildings often called guardhouses or jails.
+                </p>
 
-<p>
-<b>Saving</b><br>
-• Sit (') ~180 seconds<br>
-• Save via action menu<br><br>
+                <div class="route-grid">
+                    <div class="route-card">
+                        <h3>Two northern military bases</h3>
+                        <p>Makarov pistols</p>
+                    </div>
 
-<b>Important:</b><br>
-• Only position is saved<br>
-• Items do NOT persist<br>
-• Hide them in the world
-</p>
+                    <div class="route-card">
+                        <h3>Central airstrip military base</h3>
+                        <p>Makarov ammunition and AK-74 ammunition</p>
+                    </div>
 
-<p>
-<b>Night</b><br>
-Server skips 21:00 → 04:00<br><br>
+                    <div class="route-card">
+                        <h3>Southernmost military base</h3>
+                        <p>AK-74 rifles</p>
+                    </div>
 
-To sync:<br>
-• Sit ~180s → save → relog
-</p>
+                    <div class="route-card">
+                        <h3>Progression</h3>
+                        <p>
+                            Finding an AK-74 is meant to be a major event, not one step in a catalogue
+                            of hundreds of guns.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </details>
 
-<p>
-<b>Stash</b><br>
-• Airfields have storage crates<br>
-• Persist through server restarts
-</p>
+        <details>
+            <summary>Navigation Equipment</summary>
+            <div class="details-content">
+                <p>Near military barracks, you may find:</p>
 
-</details>
+                <ul class="section-list">
+                    <li>watches;</li>
+                    <li>compasses.</li>
+                </ul>
 
-<!-- LINKS -->
-<div class="box">
-<h2>📺 Videos</h2>
-<p><a href="https://www.youtube.com/@TheThirstgame">👉 Watch on YouTube</a></p>
-</div>
+                <p>Maps can appear near camouflaged military buildings and inside towns.</p>
 
-<div class="box">
-<h2>📢 Community</h2>
-<p><a href="https://discord.gg/UqUdZpsR8G">👉 Join Discord</a></p>
-</div>
+                <p>Binoculars can be found at:</p>
 
-<!-- IMAGE MODAL -->
-<div id="imgModal" onclick="this.style.display='none'">
-    <img id="imgModalContent">
-</div>
+                <ul class="section-list">
+                    <li>the northern harbour;</li>
+                    <li>the lighthouses;</li>
+                    <li>the airstrip control tower.</li>
+                </ul>
 
-<script>
-document.querySelectorAll('.gallery img').forEach(img => {
-    img.onclick = () => {
-        const modal = document.getElementById('imgModal');
-        const modalImg = document.getElementById('imgModalContent');
-        modal.style.display = 'flex';
-        modalImg.src = img.src;
-    };
-});
-</script>
+                <p>
+                    Navigation equipment matters because players do not begin fully informed and
+                    equipped. Learning the island and locating the tools needed to navigate it are
+                    part of survival.
+                </p>
+            </div>
+        </details>
 
+        <details>
+            <summary>Water</summary>
+            <div class="details-content">
+                <p>Water is found primarily in towns.</p>
+
+                <p>
+                    The available sources are water pumps and the fountain. Every source contains a
+                    finite amount of water, and its supply periodically replenishes.
+                </p>
+
+                <p>
+                    A player may deliberately consume an entire water source, denying it to anyone
+                    who arrives later. This can be used as a tactical survival method—but it also
+                    removes that source as a safety net for the player who emptied it.
+                </p>
+
+                <div class="callout">
+                    On Utes, water is not background scenery. It determines routes, creates hotspots,
+                    and can be more strategically important than a weapon.
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary>Food</summary>
+            <div class="details-content">
+                <p>Food is also found in towns.</p>
+
+                <p>
+                    It appears around chicken coops and rabbit cages. Like water, the available food
+                    supply is finite and periodically replenishes.
+                </p>
+
+                <p>
+                    A town that was useful earlier may already have been stripped by another survivor.
+                </p>
+            </div>
+        </details>
+
+        <details>
+            <summary>AI Survivors and Bandits</summary>
+            <div class="details-content">
+                <p>The island currently supports:</p>
+
+                <ul class="section-list">
+                    <li><strong>6 survivor bots</strong></li>
+                    <li><strong>2 bandits armed with Makarov pistols</strong></li>
+                    <li><strong>1 bandit armed with an AK-74</strong></li>
+                </ul>
+
+                <p>
+                    They periodically respawn and move through the same survival space as human
+                    players, creating distant gunshots, temporary danger zones, and armed pressure
+                    around important routes.
+                </p>
+
+                <p>
+                    The AI population can be switched on or off by standing near the flagpole close
+                    to the player spawn area.
+                </p>
+
+                <p>
+                    The bots are not intended to turn Utes into a permanent PvE warzone. They exist
+                    to make the island feel inhabited and to create occasional uncertainty while
+                    preserving long periods of travel, silence, and tension.
+                </p>
+            </div>
+        </details>
+
+        <section class="box" id="join">
+            <h2>Requirements and Joining</h2>
+
+            <p><strong>Required:</strong> ArmA 2 base game + Operation Arrowhead</p>
+            <p class="warning">Operation Arrowhead alone will not work.</p>
+
+            <ol class="join-steps">
+                <li>Launch the game without BattlEye.</li>
+                <li>Open <strong>Multiplayer</strong>.</li>
+                <li>Set the server filter to <strong>Thirst</strong>.</li>
+                <li>Join <strong>The Thirst Utes</strong>.</li>
+            </ol>
+        </section>
+
+        <section class="box" id="community">
+            <h2>Community</h2>
+            <p>
+                <a href="https://discord.gg/UqUdZpsR8G" target="_blank" rel="noopener noreferrer">
+                    Join The Thirst Discord
+                </a>
+            </p>
+        </section>
+
+        <footer>
+            <p>
+                The Thirst: Utes is an independent ArmA 2 survival server project.
+            </p>
+        </footer>
+    </main>
+
+    <div id="imgModal" role="dialog" aria-modal="true" aria-label="Full-size Utes server map">
+        <button id="closeModal" type="button" aria-label="Close map">Close</button>
+        <img
+            id="imgModalContent"
+            src="The Thirst Arma2-terrain-utes-topographicmap.jpg"
+            alt="Full-size topographic map of The Thirst: Utes server"
+        >
+    </div>
+
+    <script>
+        const mapLink = document.querySelector(".map-link");
+        const modal = document.getElementById("imgModal");
+        const closeModal = document.getElementById("closeModal");
+
+        function openMap(event) {
+            event.preventDefault();
+            modal.classList.add("open");
+            document.body.style.overflow = "hidden";
+            closeModal.focus();
+        }
+
+        function closeMap() {
+            modal.classList.remove("open");
+            document.body.style.overflow = "";
+            mapLink.focus();
+        }
+
+        mapLink.addEventListener("click", openMap);
+        closeModal.addEventListener("click", closeMap);
+
+        modal.addEventListener("click", (event) => {
+            if (event.target === modal) {
+                closeMap();
+            }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && modal.classList.contains("open")) {
+                closeMap();
+            }
+        });
+    </script>
 </body>
 </html>
